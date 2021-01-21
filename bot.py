@@ -41,14 +41,16 @@ def generate_circle_plot(df, path):
 
 def get_file(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Archivo recibido, generando imagen...")
-    excel_file = update.message.document.get_file().download()
-    df = pd.read_excel(excel_file)
+    __excel_file = update.message.document.get_file().download()
+    df = pd.read_excel(__excel_file)
     df['Ticker'] = df['Symbol/ISIN'].apply(yf.get_ticker)
-    generate_circle_plot(df, './figure.png')
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('./figure.png', 'rb'))
 
-    os.remove(excel_file)
-    os.remove('./figure.png')
+    __figure_path = './figure.png'
+    generate_circle_plot(df, __figure_path)
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open(__figure_path, 'rb'))
+
+    os.remove(__excel_file)
+    os.remove(__figure_path)
 
 
 start_handler = CommandHandler('start', start)
