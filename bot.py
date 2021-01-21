@@ -1,22 +1,21 @@
-from settings import BOT_TOKEN
+import os
 import logging
+import pandas as pd
+import matplotlib.pyplot as plt
+
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 
-import pandas as pd
-import matplotlib.pyplot as plt
 from yahoo_finance import YahooFinance
+from settings import BOT_TOKEN, SERVER_URL, PORT
 
-import os
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 yf = YahooFinance()
 
 updater = Updater(token=BOT_TOKEN, use_context=True)
 dispatcher = updater.dispatcher
-
-
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 
 def start(update, context):
@@ -59,5 +58,5 @@ excel_handler = MessageHandler(Filters.document, get_file)
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(excel_handler)
 
-updater.start_polling()
+updater.start_webhook(listen=SERVER_URL, port=PORT)
 

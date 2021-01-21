@@ -5,6 +5,8 @@ if os.getenv('ENVIRONMENT') is None:
     load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+SERVER_URL = os.getenv("SERVER_URL")
+PORT = os.getenv("PORT")
 
 
 if __name__ == '__main__':
