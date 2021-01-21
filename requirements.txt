@@ -3,3 +3,4 @@ python-telegram-bot
 pandas
 xlrd
 matplotlib
+requests

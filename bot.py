@@ -58,5 +58,5 @@ excel_handler = MessageHandler(Filters.document, get_file)
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(excel_handler)
 
-updater.start_webhook(listen=SERVER_URL, port=PORT)
+updater.start_webhook(listen=SERVER_URL, port=PORT, force_event_loop=True)
 
