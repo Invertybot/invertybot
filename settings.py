@@ -11,3 +11,5 @@ PORT = os.getenv("PORT")
 
 if __name__ == '__main__':
     print(f'BOT_TOKEN: {BOT_TOKEN}')
+    print(f'SERVER_URL: {SERVER_URL}')
+    print(f'PORT: {PORT}')
