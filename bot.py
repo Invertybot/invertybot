@@ -8,7 +8,7 @@ from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 
 from yahoo_finance import YahooFinance
-from settings import BOT_TOKEN, SERVER_URL, PORT
+from settings import BOT_TOKEN
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -58,5 +58,5 @@ excel_handler = MessageHandler(Filters.document, get_file)
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(excel_handler)
 
-updater.start_webhook(listen=SERVER_URL, port=PORT, force_event_loop=True)
+updater.start_polling()
 
