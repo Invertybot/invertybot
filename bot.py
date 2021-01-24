@@ -10,7 +10,9 @@ from telegram.ext import MessageHandler, Filters
 from generate_plot import generate_circle_plot
 from etl import ETL
 from settings import BOT_TOKEN, SERVER_URL, PORT
+from mongo_manager import MongoManager
 
+mongo_manager = MongoManager()
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 
@@ -28,7 +30,7 @@ def process_file(update, context):
     __excel_file = update.message.document.get_file().download()
     df = pd.read_excel(__excel_file)
     df = ETL.preprocess_data(df)
-
+    mongo_manager.insert_account(update.effective_chat.id, df)
     __figure_path = './figure.png'
     generate_circle_plot(df, __figure_path)
 
