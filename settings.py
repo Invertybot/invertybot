@@ -7,6 +7,7 @@ if os.getenv('ENVIRONMENT') is None:
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 SERVER_URL = os.getenv("SERVER_URL")
 PORT = os.getenv("PORT")
+SECRET_SALT = os.getenv("SECRET_SALT")
 
 
 if __name__ == '__main__':

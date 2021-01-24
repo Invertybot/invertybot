@@ -1,5 +1,6 @@
 import requests
 
+
 class YahooFinance():
     def __init__(self):
         self.api_url = "https://query2.finance.yahoo.com/v1/finance/search"

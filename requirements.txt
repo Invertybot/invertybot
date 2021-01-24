@@ -6,3 +6,4 @@ matplotlib
 requests
 flask
 flask_cors
+pymongo
