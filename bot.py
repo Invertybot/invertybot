@@ -44,15 +44,15 @@ excel_handler = MessageHandler(Filters.document, process_file)
 
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(excel_handler)
+#
+# bot = telegram.Bot(token=BOT_TOKEN)
+# bot.setWebhook(SERVER_URL + BOT_TOKEN)
 
-bot = telegram.Bot(token=BOT_TOKEN)
-bot.setWebhook(SERVER_URL + BOT_TOKEN)
-
-# updater.start_polling()
-
-updater.start_webhook(listen="0.0.0.0",
-                      port=PORT,
-                      url_path=BOT_TOKEN)
-updater.bot.setWebhook(SERVER_URL + BOT_TOKEN)
-updater.idle()
+updater.start_polling()
+#
+# updater.start_webhook(listen="0.0.0.0",
+                      # port=PORT,
+                      # url_path=BOT_TOKEN)
+# updater.bot.setWebhook(SERVER_URL + BOT_TOKEN)
+# updater.idle()
 
