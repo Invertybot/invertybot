@@ -4,3 +4,5 @@ pandas
 xlrd
 matplotlib
 requests
+flask
+flask_cors
