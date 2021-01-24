@@ -24,6 +24,7 @@ def start(update, context):
 
 
 def get_file(update, context):
+    print("Archivo recibido, generando imagen...")
     context.bot.send_message(chat_id=update.effective_chat.id, text="Archivo recibido, generando imagen...")
     __excel_file = update.message.document.get_file().download()
     df = pd.read_excel(__excel_file)
@@ -32,9 +33,11 @@ def get_file(update, context):
     __figure_path = './figure.png'
     generate_circle_plot(df, __figure_path)
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open(__figure_path, 'rb'))
+    print("Imagen enviada")
 
     os.remove(__excel_file)
     os.remove(__figure_path)
+
 
 
 start_handler = CommandHandler('start', start)
