@@ -9,6 +9,10 @@ from global_portfolio import GlobalPortfolio
 gp = GlobalPortfolio()
 
 
+@app.route('/')
+def get_global_portflio():
+    return Response('Invertybot backend', status=200, mimetype='application/json')
+
 @app.route('/api/get-global-portfolio')
 def get_global_portflio():
 
