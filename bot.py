@@ -2,14 +2,13 @@ import os
 import logging
 import pandas as pd
 
-import telegram
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 
 from generate_plot import generate_circle_plot
 from etl import ETL
-from settings import BOT_TOKEN, SERVER_URL, PORT
+from settings import BOT_TOKEN
 from mongo_manager import MongoManager
 
 mongo_manager = MongoManager()
@@ -47,15 +46,13 @@ excel_handler = MessageHandler(Filters.document, process_file)
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(excel_handler)
 
-bot = telegram.Bot(token=BOT_TOKEN)
-bot.setWebhook(SERVER_URL + BOT_TOKEN)
 
-# updater.start_polling()
+updater.start_polling()
 
-updater.start_webhook(listen="0.0.0.0",
-                      port=PORT,
-                      url_path=BOT_TOKEN)
+# updater.bot.setWebhook(SERVER_URL + BOT_TOKEN)
+# updater.start_webhook(listen="0.0.0.0",
+#                       port=PORT,
+#                       url_path=BOT_TOKEN)
 
-updater.bot.setWebhook(SERVER_URL + BOT_TOKEN)
-updater.idle()
+# updater.idle()
 
